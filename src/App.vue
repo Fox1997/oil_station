@@ -1,32 +1,53 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div id="app" class="full-height">
+   <router-view />
   </div>
 </template>
 
+<script>
+import { mapActions } from 'vuex'
+import { reqToken } from '@/api'
+export default {
+  name: 'App',
+  created () {
+    this.initData()
+  },
+  methods: {
+    ...mapActions([
+      'handleAuthenticate',
+      'getEventsDefine',
+      'getLevelsDefine',
+      'getCategoryList'
+    ]),
+    async getToken () {
+      const { token } = await reqToken() // 发送请求获取token
+      if (token) {
+        // 如果获取到token，调用vuex的action中的handleAuthenticate，router = Home
+        this.handleAuthenticate(token)
+        this.$router.replace({ name: 'Home' })
+      }
+    },
+    initData () {
+      if (!sessionStorage.getItem('categoryList')) {
+        this.getCategoryList() // 获取场景定义
+      }
+      if (!sessionStorage.getItem('eventData')) {
+        this.getEventsDefine() // 获取事件定义
+      }
+      if (!sessionStorage.getItem('levelData')) {
+        this.getLevelsDefine() // 获取违规等级定义
+      }
+      // if (sessionStorage.getItem('token')) {
+      //   sessionStorage.removeItem('token')
+      // }
+      // 获取到这些数据后，再进行 token 获取
+      this.getToken()
+    }
+  }
+}
+</script>
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+  padding: 0 16px;
 }
 </style>

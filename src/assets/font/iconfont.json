@@ -1,0 +1,44 @@
+{
+  "id": "2434804",
+  "name": "oil-station-web-v2",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "陕西中石油项目重构",
+  "glyphs": [
+    {
+      "icon_id": "1315587",
+      "name": "加油站",
+      "font_class": "-refuel",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "5958949",
+      "name": "收银台",
+      "font_class": "-checkout",
+      "unicode": "e632",
+      "unicode_decimal": 58930
+    },
+    {
+      "icon_id": "8554253",
+      "name": "财务统计",
+      "font_class": "-safebox",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
+      "icon_id": "15761102",
+      "name": "油罐车-",
+      "font_class": "-unload",
+      "unicode": "e739",
+      "unicode_decimal": 59193
+    },
+    {
+      "icon_id": "19725669",
+      "name": "Overview2",
+      "font_class": "-overview",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    }
+  ]
+}

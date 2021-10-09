@@ -1,0 +1,173 @@
+/* @bgColor: #000d4a;  */
+/* // 页面背景色 */
+
+
+body {
+  width: 100%;
+  height: 100%;
+  background: url('../img/bg.png') no-repeat center center ;
+  /* background-repeat: no-repeat; */
+  background-attachment:fixed;
+  background-size: cover;
+  /* // background-position: center; */
+  color: #fff;
+  overflow: hidden;
+  overflow-x: hidden;
+}
+@font-face{
+	font-family: yjsz;
+	src:url('../font/yjsz.TTF'),
+		url('../font/yjsz.eot'); /* IE9+,可以是具体的实际链接 */
+	}
+
+.full-height {
+  height: 100%;
+}
+.el-popper[x-placement^=bottom] .popper__arrow{
+  display: none !important;
+}
+.el-popper .popper__arrow, .el-popper .popper__arrow::after{
+  display: none !important;
+  border-style: none !important;
+}
+.el-radio-button__orig-radio:disabled+.el-radio-button__inner{
+  background-color: transparent ;
+}
+.el-radio-button__inner{
+  background-color:transparent;
+}
+.boxall{
+  padding:1rem;  background: rgba(16,54,87,0.4);position: relative; z-index: 10;}
+.title{ font-size:1rem; color:#fff; position: relative; padding-left: .8rem;margin-bottom: .8rem;}
+.title:before{ width: .3rem; height: 1.2rem; top:.1rem; position: absolute; content: ""; background: #49bcf7; border-radius:1rem; left: 0; }
+
+.left {
+ float: left;
+}
+.right {
+  float: right;
+}
+/* 播放器高度样式 */
+/* .el-carousel__container {
+  position: relative;
+  height: 51rem !important;
+}
+.el-carousel__indicators--horizontal {
+  top:46rem;
+}
+.el-carousel__arrow {
+  border: #fff .01rem solid;
+  outline: 0;
+    padding: 0;
+    margin: 0;
+    height: 3rem;
+    width: 3rem;
+    cursor: pointer;
+    transition: .3s;
+    border-radius: 50%;
+    background-color: rgba(31,45,61,.5);
+    color: #FFF;
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+    transform: translateY(-50%);
+    text-align: center;
+    font-size: 1rem;
+}
+.monitor-table,.ivu-table-wrapper{
+  margin:1rem 1rem !important;
+  
+}
+.el-card__body {
+  padding:0 !important;
+} */
+ /* 四角的边框 */
+.charts-border {
+  padding: 0px 10px;
+  background: linear-gradient(to left, #50dde6, #50dde6) left top no-repeat,
+    linear-gradient(to bottom, #50dde6, #50dde6) left top no-repeat,
+    linear-gradient(to left, #50dde6, #50dde6) right top no-repeat,
+    linear-gradient(to bottom, #50dde6, #50dde6) right top no-repeat,
+    linear-gradient(to left, #50dde6, #50dde6) left bottom no-repeat,
+    linear-gradient(to bottom, #50dde6, #50dde6) left bottom no-repeat,
+    linear-gradient(to left, #50dde6, #50dde6) right bottom no-repeat,
+    linear-gradient(to left, #50dde6, #50dde6) right bottom no-repeat;
+  background-size: 2px 20px, 20px 2px, 2px 20px, 20px 2px;
+  background-color: rgba(0,0,0,.2);
+}
+.home {
+  height: 100vh;
+}
+/* .echarts {
+  width: 100% !important;
+}
+.buttomRow {
+  height: 100%;
+  margin-top: 16px;
+} */
+
+ /* 智能分析下面，每个页面右边和中间那列的高度 */
+/* .center-chart,
+.right-chart {
+  height: calc(100vh - 64px - 64px - 16px);
+  background-color: rgba(13, 72, 121, 0.2);
+} */
+
+ /* 智能分析下，总览的上和下部分图表样式（图表包括统计信息） */
+/* .analysis-overview-chart-bottom {
+  margin: 16px 0;
+}
+
+.analysis-overview-chart-top,
+.analysis-overview-chart-bottom {
+  height: calc((100vh - 100px - 64px) / 2);
+  background-color: rgba(13, 72, 121, 0.2);
+} */
+
+/* // 滚动条美化 */
+
+/* ::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+} */
+
+/* // 滚动条的滑轨背景颜色 */
+/* ::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.2);
+} */
+
+/* // 滑块颜色 */
+/* ::-webkit-scrollbar-thumb {
+  background-color: #2db7f5;
+  border-radius: 10px;
+} */
+
+/* // 滑轨两头的监听按钮颜色 */
+/* ::-webkit-scrollbar-button {
+  background-color: #7c2929;
+  height: 0;
+  width: 0px;
+} */
+
+/* // 横向滚动条和纵向滚动条相交处尖角的颜色 */
+/* ::-webkit-scrollbar-corner {
+  background-color: black;
+} */
+
+/* // 合规和违规颜色 */
+.event-legal {
+  color: #18b566;
+}
+
+.event-illegal-one {
+  color: #ffc000;
+}
+
+.event-illegal-two {
+  color: #fa6d04;
+}
+
+.event-illegal-thr {
+  color: #f00;
+}
+
