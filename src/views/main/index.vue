@@ -7,13 +7,13 @@
       :checkoutXNames= "checkoutXNames"
       :checkoutData= "checkoutData" />
 
-      <line-charts class="marginDis"
-      :eventTitle= "eventTitle"
-      :eventXNames= "eventXNames"
-      :eventXData = "eventXData"
-      :eventCountArr = "eventCountArr"
-      :illegalEventsCountArr = "illegalEventsCountArr"
-      :illegalRatioArr = "illegalRatioArr"/>
+      <three-charts class="marginDis"
+      :chartTitle= "eventTitle"
+      :chartXNames= "eventXNames"
+      :chartXData = "eventXData"
+      :yDataArr = "yDataArr"
+      :unit = "unit"
+      :type = "type" />
 
       <box-Chart
       :illegalTitle= "illegalTitle"
@@ -66,7 +66,7 @@
 
 <script>
 import horizontalChart from '@/components/context/horizontalChart.vue'
-import lineCharts from '@/components/context/lineCharts.vue'
+import threeCharts from './threeLineCharts'
 import boxChart from '@/components/context/boxChart.vue'
 import fourCharts from '@/components/context/fourCharts'
 // import circleCharts from '@/components/context/circleCharts'
@@ -114,7 +114,7 @@ export default {
   name: 'index',
   components: {
     horizontalChart,
-    lineCharts,
+    threeCharts,
     boxChart,
     Score,
     fourCharts,
@@ -147,9 +147,9 @@ export default {
       // 折线图x轴数据
       eventXData: [],
       // 折线图y轴数据
-      eventCountArr: [],
-      illegalEventsCountArr: [],
-      illegalRatioArr: [],
+      yDataArr: [],
+      unit: ['次', '%'],
+      type: ['line', 'line', 'line'],
       // 左边违规等级
       illegalTitle: '违规次数',
       colTitle: [
@@ -220,15 +220,13 @@ export default {
       this.checkoutData = [enterCount, illegalPosCount, longQueueCount, serviceTimeoutCount]
 
       // 获取事件次数，违规率，违规事件次数
-      const eventCount = await reqEventCount()
-      const illegalRatio = await reqIllegalRatio()
-      const illegalEventsCount = await reqIllegalEventsCount()
-      // const illRatio = parseFloat((getyAxisArr(illegalRatio) * 100).toFixed(1))
-      this.eventXData = getxAxisArr(eventCount)
-      this.eventCountArr = getyAxisArr(eventCount)
-      this.illegalEventsCountArr = getyAxisArr(illegalEventsCount)
-      this.illegalRatioArr = getyAxisArr(illegalRatio)
-      this.illegalRatioArr = this.illegalRatioArr.map(item => parseFloat((item * 100).toFixed(1)))
+      const xData = getxAxisArr(await reqEventCount())
+      const eventCount = getyAxisArr(await reqEventCount())
+      const illegalEventsCount = getyAxisArr(await reqIllegalEventsCount())
+      const illegalRatio = getyAxisArr(await reqIllegalRatio())
+      const illegalRatioArr = illegalRatio.map(item => parseFloat((item * 100).toFixed(1)))
+      this.eventXData = xData
+      this.yDataArr = [eventCount, illegalEventsCount, illegalRatioArr]
       // 获取各个场景的违规次数
       // console.log('event', this.eventXData, this.eventYData)
 
@@ -299,7 +297,7 @@ export default {
       const restUnInspect = 100 - unInspect
       const restUnInvade = 100 - unInvade
       this.unloadRestDataList = [restUnloadScore, restUnCount, restUnInspect, restUnInvade]
-      console.log('this.unloadRestDataList', this.unloadRestDataList)
+      // console.log('this.unloadRestDataList', this.unloadRestDataList)
 
       // 财务室数据
       const { val: notCloseDoor } = await reqNotCloseDoor({ val: 1 })

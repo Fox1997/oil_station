@@ -17,7 +17,7 @@ export default {
       'handleAuthenticate',
       'getEventsDefine',
       'getLevelsDefine',
-      'getCategoryList'
+      'getCategoryDefine'
     ]),
     async getToken () {
       const { token } = await reqToken() // 发送请求获取token
@@ -28,8 +28,8 @@ export default {
       }
     },
     initData () {
-      if (!sessionStorage.getItem('categoryList')) {
-        this.getCategoryList() // 获取场景定义
+      if (!sessionStorage.getItem('categoryData')) {
+        this.getCategoryDefine() // 获取场景定义
       }
       if (!sessionStorage.getItem('eventData')) {
         this.getEventsDefine() // 获取事件定义

@@ -6,15 +6,15 @@
             <div class="con_div_text01 left">
                 <img src="../../assets/img/info_1.png" class="left text01_img">
                 <div class="left text01_div">
-                    <p>车辆总数(辆)</p>
-                    <p>12356</p>
+                    <p>{{info[0].name}}{{info[0].unit}}</p>
+                    <p>{{value[0]}}</p>
                 </div>
             </div>
             <div class="con_div_text01 right">
                 <img src="../../assets/img/info_2.png" class="left text01_img">
                 <div class="left text01_div">
-                    <p>车辆使用数(辆)</p>
-                    <p>12356</p>
+                    <p>{{info[1].name}}{{info[1].unit}}</p>
+                    <p>{{value[1]}}</p>
                 </div>
             </div>
         </div>
@@ -22,15 +22,15 @@
             <div class="con_div_text01 left">
                 <img src="../../assets/img/info_4.png" class="left text01_img">
                 <div class="left text01_div">
-                    <p>行驶里程总数(km)</p>
-                    <p class="sky">12356</p>
+                    <p>{{info[2].name}}{{info[2].unit}}</p>
+                    <p class="sky">{{value[2]}}</p>
                 </div>
             </div>
             <div class="con_div_text01 right">
                 <img src="../../assets/img/info_5.png" class="left text01_img">
                 <div class="left text01_div">
-                    <p>行驶里程平均数(km)</p>
-                    <p class="sky">12356</p>
+                    <p>{{info[3].name}}{{info[3].unit}}</p>
+                    <p class="sky">{{value[3]}}</p>
                 </div>
             </div>
         </div>
@@ -39,15 +39,15 @@
             <div class="con_div_text01 left">
                 <img src="../../assets/img/info_6.png" class="left text01_img">
                 <div class="left text01_div">
-                    <p>行驶时长总数(s)</p>
-                    <p class="org">12356</p>
+                    <p>{{info[4].name}}{{info[4].unit}}</p>
+                    <p class="org">{{value[4]}}</p>
                 </div>
             </div>
             <div class="con_div_text01 right">
                 <img src="../../assets/img/info_7.png" class="left text01_img">
                 <div class="left text01_div">
-                    <p>行驶ihfj平均数(s)</p>
-                    <p class="org">12356</p>
+                    <p>{{info[5].name}}{{info[5].unit}}</p>
+                    <p class="org">{{value[5]}}</p>
                 </div>
             </div>
         </div>
@@ -57,6 +57,14 @@
 
 <script>
 export default {
+  props: {
+    value: {
+      type: Array
+    },
+    info: {
+      type: Array
+    }
+  }
 
 }
 </script>

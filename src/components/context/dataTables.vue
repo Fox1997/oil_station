@@ -2,28 +2,28 @@
       <div class="div_any">
         <div class="left div_any01">
             <div class="div_any_child">
-                <div class="div_any_title"><img src="img/title_1.png">车辆类型统计 </div>
-                <p id="char1" class="p_chart"></p>
+                <div class="div_any_title"><img src="img/title_1.png">{{title[0]}} </div>
+                <slot name="checkout"></slot>
             </div>
             <div class="div_any_child">
-                <div class="div_any_title"><img src="img/title_2.png">车辆状态统计 </div>
-                <p id="char2" class="p_chart"></p>
+                <div class="div_any_title"><img src="img/title_2.png">{{title[1]}} </div>
+                <slot name="unload"></slot>
             </div>
         </div>
         <div class="div_any02 left ">
             <div class="div_any_child div_height">
-                <div class="div_any_title any_title_width"><img src="img/title_3.png">车辆行驶地图 </div>
-                <div id="map_div"></div>
+                <div class="div_any_title any_title_width"><img src="img/title_3.png">{{title[2]}} </div>
+                <slot name="ill"></slot>
             </div>
         </div>
         <div class="right div_any01">
             <div class="div_any_child">
-                <div class="div_any_title"><img src="img/title_4.png">车辆行驶统计 </div>
-                <p id="char3" class="p_chart"></p>
+                <div class="div_any_title"><img src="img/title_4.png">{{title[3]}} </div>
+                <slot name="refuel"></slot>
             </div>
             <div class="div_any_child">
-                <div class="div_any_title"><img src="img/title_5.png">车辆报警统计 </div>
-                <p id="char4" class="p_chart"></p>
+                <div class="div_any_title"><img src="img/title_5.png">{{title[4]}} </div>
+                <slot name="safe"></slot>
             </div>
         </div>
     </div>
@@ -31,7 +31,12 @@
 
 <script>
 export default {
-  name: 'detailTable'
+  name: 'detailTable',
+  props: {
+    title: {
+      type: Array
+    }
+  }
 
 }
 </script>

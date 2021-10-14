@@ -15,7 +15,7 @@
           <el-dropdown-item :command="item.name"
           v-for="(item,index) in categories"
           :key="index"  >
-          {{item.name_cn}}
+          {{item.nameCN}}
           </el-dropdown-item>
           </el-dropdown-menu>
       </el-dropdown>
@@ -81,13 +81,19 @@ export default {
   },
   methods: {
     ...mapActions([
-      'getCategoryList'
+      'getCategoryDefine'
     ]),
     initDate () {
-      if (!sessionStorage.getItem('categoryList')) {
-        this.getCategoryList() // 获取场景定义
+      if (!sessionStorage.getItem('categoryData')) {
+        this.getCategoryDefine() // 获取场景定义
       }
-      this.categories = JSON.parse(sessionStorage.getItem('categoryList'))
+      const Cate = JSON.parse(sessionStorage.getItem('categoryData'))
+      const categoriesArr = Object.keys(Cate).filter(key => key.length === 1).map(key => Cate[key])
+      // console.log(categoriesArr)
+      for (let i = 0; i < categoriesArr.length; i++) {
+        this.categories[i] = categoriesArr[i]
+      }
+      // console.log(this.categories)
     },
     // header配色和内容
     handleMenu (title, num) {
@@ -103,8 +109,10 @@ export default {
     // 选择场景类型
     chooseCategoryType (command) {
       // this.selectOverview = false
-      console.log(command)
+      // console.log(command)
       // 将选择的场景传给路由
+      this.Title[1].color = '#409EFF'
+      this.Title[0].color = 'antiquewhite'
       this.$router.push({ name: command })
       this.$store.commit('SET_CATEGORY', { category: command })
     }

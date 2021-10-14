@@ -24,7 +24,7 @@ instance.interceptors.request.use(config => {
 // 认证接口(HTTP Basic Authorization认证)
 instance.interceptors.request.use(
   config => {
-    console.log('111', window.sessionStorage.token)
+    // console.log('111', window.sessionStorage.token)
     if (!sessionStorage.getItem('token')) {
       config.headers.Authorization = `Basic ${Base64.encode('admin:admin123')}`
     }

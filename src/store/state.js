@@ -10,5 +10,31 @@ export default {
     code: 0,
     name: '',
     nameCN: ''
+  },
+  // 智能监控数据
+  monitor: {
+    isLoadDetail: false, // 是否加载详情页
+
+    // 所有的视频流
+    videoStreamArr: [],
+
+    curVideoStream: null, // 当前查看详情的视频流信息
+
+    // 事件列表
+    tableDataArr: []
+  },
+  // 报警事件数据
+  alarmEvents: {
+    // 事件列表
+    tableDataArr: [],
+
+    curRowIndex: 1, // 默认事件详情展示第一条数据
+
+    // 分页功能需要的数据
+    pageData: {
+      itemTotal: 0, // 总条数
+      curPage: 1, // 当前页
+      pageSize: 25 // 每页数量
+    }
   }
 }

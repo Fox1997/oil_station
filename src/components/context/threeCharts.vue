@@ -7,7 +7,7 @@
 <script>
 import echarts from 'echarts'
 export default {
-  name: 'singleChart',
+  name: 'threeCharts',
   props: {
     chartData: {
       type: Array
@@ -16,7 +16,8 @@ export default {
       type: Array
     },
     chartType: {
-      type: Array
+      type: Array,
+      default: () => ['bar', 'line']
     }
   },
   data () {
@@ -122,26 +123,26 @@ export default {
               shadowColor: 'rgba(0, 0, 0, 0.1)'
             }
           }
-        // }, {
-        //   name: this.chartTitle[1],
-        //   type: this.chartType[1],
-        //   data: this.chartData[2],
-        //   barWidth: 10, // 柱图宽度
-        //   barGap: 0.2,
-        //   itemStyle: {
-        //     normal: { // 设置颜色的渐变
-        //       barBorderRadius: 50,
-        //       // color: '#4fb69d'
-        //       color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
-        //         offset: 0,
-        //         color: '#E57230'
-        //       }, {
-        //         offset: 0.8,
-        //         color: '#D8AE22'
-        //       }], false),
-        //       shadowColor: 'rgba(0, 0, 0, 0.1)'
-        //     }
-        //   }
+        }, {
+          name: this.chartTitle[1],
+          type: this.chartType[1],
+          data: this.chartData[2],
+          barWidth: 10, // 柱图宽度
+          barGap: 0.2,
+          itemStyle: {
+            normal: { // 设置颜色的渐变
+              barBorderRadius: 50,
+              // color: '#4fb69d'
+              color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
+                offset: 0,
+                color: '#E57230'
+              }, {
+                offset: 0.8,
+                color: '#D8AE22'
+              }], false),
+              shadowColor: 'rgba(0, 0, 0, 0.1)'
+            }
+          }
         }]
       }
     }
@@ -150,15 +151,15 @@ export default {
     chartData (newVal, oldVal) {
       this.option.xAxis.data = newVal[0] // x轴
       this.option.series[0].data = newVal[1] // Y1
-      // this.option.series[1].data = newVal[2] // Y2
+      this.option.series[1].data = newVal[2] // Y2
     },
     chartTitle (newVal, oldVal) {
       this.option.series[0].name = newVal[0]
-      // this.option.series[1].name = newVal[1]
+      this.option.series[1].name = newVal[1]
     },
     chartType (newVal, oldVal) {
       this.option.series[0].type = newVal[0]
-      // this.option.series[1].type = newVal[1]
+      this.option.series[1].type = newVal[1]
     }
   }
 

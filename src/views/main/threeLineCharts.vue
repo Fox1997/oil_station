@@ -1,8 +1,9 @@
 <template>
 <!-- 三条彩色待亮点的折线图 -->
- <!-- <div class="boxall" >
-    <div class="title">{{chartTitle}}</div> -->
+ <div class="boxall" >
+    <div class="title">{{chartTitle}}</div>
     <v-chart class="navboxall" :options = "option " autoresize ></v-chart>
+  </div>
 </template>
 
 <script>
@@ -24,7 +25,8 @@ export default {
       type: Array
     },
     unit: {
-      type: Array
+      type: Array,
+      default: () => ['%', '%']
     },
     type: {
       type: Array
@@ -99,31 +101,30 @@ export default {
               color: '#57617B'
             }
           }
-        // },
-        // {
-        //   name: this.unit[1],
-        //   type: 'value',
-        //   max: 100,
-        //   axisTick: {
-        //     show: false
-        //   },
-        //   axisLine: {
-        //     lineStyle: {
-        //       color: 'rgba(255,255,255,.8)'
-        //     }
-        //   },
-        //   axisLabel: {
-        //     textStyle: {
-        //       fontSize: 12,
-        //       color: 'rgba(255,255,255,.8)'
-        //     }
-        //   },
-        //   splitLine: {
-        //     lineStyle: {
-        //       color: '#57617B'
-        //     }
-        //   }
-        // }],
+        },
+        {
+          name: this.unit[1],
+          type: 'value',
+          max: 100,
+          axisTick: {
+            show: false
+          },
+          axisLine: {
+            lineStyle: {
+              color: 'rgba(255,255,255,.8)'
+            }
+          },
+          axisLabel: {
+            textStyle: {
+              fontSize: 12,
+              color: 'rgba(255,255,255,.8)'
+            }
+          },
+          splitLine: {
+            lineStyle: {
+              color: '#57617B'
+            }
+          }
         }],
         series: [{
           name: this.chartXNames[0],
@@ -184,7 +185,7 @@ export default {
         }, {
           name: this.chartXNames[2],
           type: this.type[2],
-          // yAxisIndex: 1,
+          yAxisIndex: 1,
           smooth: true,
           lineStyle: {
             normal: {
@@ -241,10 +242,8 @@ export default {
 <style scoped >
 
 .navboxall{
-  height:30rem;
+  height:10rem;
   width:100%;
-  margin-top:4rem;
-  padding:0 1rem;
   /* background-color: #fff; */
   }
 </style>

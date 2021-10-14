@@ -49,7 +49,11 @@ export default {
     return {
       option: {
         title: {
-          text: this.titleData
+          text: this.titleData,
+          textStyle: {
+            color: '#5fd8f9',
+            weight: 400
+          }
         },
         tooltip: {
           trigger: 'axis',

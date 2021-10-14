@@ -10,7 +10,7 @@ import ElementUI from 'element-ui' // 引入 ElementUI
 import 'element-ui/lib/theme-chalk/index.css'
 
 import '@/assets/css/base.css'
-import '@/assets/css/global.css'
+import '@/assets/css/global.less'
 import '@/assets/font/iconfont.css' // 引入 iconfont 图标
 
 // 手动导入 ECharts 各模块来减小打包体积
@@ -33,10 +33,12 @@ import VueVideoPlayer from 'vue-video-player'
 import 'video.js/dist/video-js.css'
 
 // 路由拦截, 切换路由强制取消上一各页面发起的请求
-// import axiosStore from '@/api/axiosStore'
+import axiosStore from '@/api/axiosStore'
+
 import Viewer from 'v-viewer'
 import 'viewerjs/dist/viewer.css'
 
+// 分辨率适配
 import 'lib-flexible/flexible'
 import echarts from 'echarts'
 Vue.prototype.$echarts = echarts
@@ -61,15 +63,15 @@ Viewer.setDefaults({
 
 Vue.config.productionTip = false
 
-// router.beforeEach((to, from, next) => {
-//   // 进行路由拦截，路由切换时取消上个路由发出的请求
-//   axiosStore.commit('clearToken')
+router.beforeEach((to, from, next) => {
+  // 进行路由拦截，路由切换时取消上个路由发出的请求
+  axiosStore.commit('clearToken')
 
-//   // const isAuthenticate = store.state.authStatus
-//   // if (isAuthenticate) {
-//   //   next()
-//   // }
-// })
+  const isAuthenticate = store.state.authStatus
+  if (isAuthenticate) {
+    next()
+  }
+})
 
 new Vue({
   router,

@@ -16,35 +16,70 @@
           <a href="javascript:void (0)" class="tab_a">云台控制</a>
         </div>
         <div class="car_content">
-            <p><span>车牌号：</span><span>K89076</span></p>
+            <!-- <p><span>车牌号：</span><span>K89076</span></p>
             <p><span>驾驶人姓名：</span><span>K89076</span></p>
             <p><span>车辆品牌：</span><span>K89076</span></p>
             <p><span>车辆型号：</span><span>K89076</span></p>
             <p><span>所属公司：</span><span>K89076xxxxxxxxxxxxxxxxxx</span></p>
             <p><span>行驶里程：</span><span>xxxxx</span></p>
             <p><span>状态：</span><span>xxxxx</span></p>
-            <p><span>所在位置：</span><span>xxxxxxxxxxxxx</span></p>
+            <p><span>所在位置：</span><span>xxxxxxxxxxxxx</span></p> -->
         </div>
       </div>
     </div>
     <div class="left car_center">
-        <video controls="controls" ></video>
-        <video controls="controls" class="magin_left"></video>
-        <video controls="controls" class="magin_left "></video>
-         <video controls="controls" class="magin_top"></video>
-         <video controls="controls" class="magin_top magin_left"></video>
-          <video controls="controls" class="magin_top magin_left"></video>
-        <!--
-        <video controls="controls" class="magin_top"></video>
-        -->
+        <video controls="controls" class="magin_left"  v-for="(item, i) in videoStreamArr"
+      :key="`item-${i}`"></video>
     </div>
   </div>
 </el-row>
 </template>
 
 <script>
+// import VideoGrid from './VideoGrid'
+// import VideoDetail from './detail'
+import { mapActions } from 'vuex'
 export default {
-
+  name: 'Monitor',
+  components: {
+    // VideoGrid,
+    // VideoDetail
+  },
+  data () {
+    return {
+      timer: null
+    //   isGetStream: false // 是否获取到流信息
+    }
+  },
+  computed: {
+    // isLoadDetail () {
+    //   return this.$store.state.monitor.isLoadDetail
+    // }
+    videoStreamArr () { // 站点视频流
+      return this.$store.state.monitor.videoStreamArr
+    }
+  },
+  watch: {
+    isGetStream: {
+      handler (val) {
+        if (val) {
+          window.clearInterval(this.timer)
+        }
+      }
+    }
+  },
+  mounted () {
+    // this.timer = window.setInterval(() => {
+    if (sessionStorage.getItem('token')) {
+      this.getVideoStreamArr() // 确保获取到 token 后，再发送获取视频流列表的请求
+      // this.isGetStream = true
+    //   console.log(this.getVideoStreamArr)
+    }
+    // }, 10)
+  },
+  methods: {
+    ...mapActions(['getVideoStreamArr'])
+  }
 }
 </script>
 
@@ -185,7 +220,7 @@ export default {
     margin-top: 1%;
 }
 .magin_left{
-    margin-left: 1%;
+    padding: .2rem;
 }
 
 </style>

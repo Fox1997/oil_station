@@ -2,7 +2,13 @@ exports.ip = 'http://192.168.9.3:8080' // 接口地址
 
 // 从sessionStorage中获取场景
 exports.getCategoryData = function () {
-  return JSON.parse(sessionStorage.getItem('categoryList'))
+  return JSON.parse(sessionStorage.getItem('categoryData'))
+}
+exports.getEventData = function () {
+  return JSON.parse(sessionStorage.getItem('eventData'))
+}
+exports.getLevelData = function () {
+  return JSON.parse(sessionStorage.getItem('levelData'))
 }
 exports.getxAxisArr = function (params, isToday = true) {
   if (isToday) {
@@ -51,6 +57,45 @@ exports.formatCongestion = function (index) {
   } else {
     res.text = ''
     res.color = ''
+  }
+  return res
+}
+// 格式化时间有关的值，如 300 应该转换为小时、分钟、秒
+exports.formatTime = function (time) {
+  const res = {}
+  if (time <= 300) {
+    res.value = parseFloat(time.toFixed(1))
+    res.unit = '秒'
+  } else if (time <= 3600 && time > 300) {
+    res.unit = '分'
+    res.value = parseFloat((time / 60).toFixed(1))
+  } else {
+    res.unit = '时'
+    res.value = parseFloat((time / 3600).toFixed(1))
+  }
+  return res
+}
+
+// 格式化违规程度
+exports.formatIllLevel = function (value) {
+  const res = {}
+  // if (value === 0) {
+  //   res.value = '基本合规'
+  //   res.color = '#006030'
+  // } else if (value < 0.5) {
+  if (value < 0.5) {
+    res.value = '合规'
+    // res.color = '#64A600'
+    res.color = '#006030'
+  } else if (value >= 0.5 && value < 1.5) {
+    res.value = '轻度违规'
+    res.color = '#977c00'
+  } else if (value >= 1.5 && value < 2.5) {
+    res.value = '中度违规'
+    res.color = '#f75000'
+  } else {
+    res.value = '严重违规'
+    res.color = '#CE0000'
   }
   return res
 }

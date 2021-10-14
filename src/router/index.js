@@ -46,7 +46,8 @@ const routes = [{
           name: 'overview',
           component: () => import('@/views/analysis/overView'),
           meta: {
-            requireAuth: true
+            requireAuth: true,
+            name: '全景'
           }
         },
         {
@@ -54,7 +55,8 @@ const routes = [{
           name: 'gate',
           component: () => import('@/views/analysis/gate'),
           meta: {
-            requireAuth: true
+            requireAuth: true,
+            name: '大门'
           }
         },
         {
@@ -62,7 +64,8 @@ const routes = [{
           name: 'checkout',
           component: () => import('@/views/analysis/checkout'),
           meta: {
-            requireAuth: true
+            requireAuth: true,
+            name: '收银台'
           }
         },
         {
@@ -70,7 +73,8 @@ const routes = [{
           name: 'refuel',
           component: () => import('@/views/analysis/refuel'),
           meta: {
-            requireAuth: true
+            requireAuth: true,
+            name: '加油区'
           }
         },
         {
@@ -78,7 +82,8 @@ const routes = [{
           name: 'safebox',
           component: () => import('@/views/analysis/safebox'),
           meta: {
-            requireAuth: true
+            requireAuth: true,
+            name: '财务室'
           }
         },
         {
@@ -86,7 +91,8 @@ const routes = [{
           name: 'switching',
           component: () => import('@/views/analysis/switching'),
           meta: {
-            requireAuth: true
+            requireAuth: true,
+            name: '配电室'
           }
         },
         {
@@ -94,7 +100,8 @@ const routes = [{
           name: 'unload',
           component: () => import('@/views/analysis/unload'),
           meta: {
-            requireAuth: true
+            requireAuth: true,
+            name: '卸油区'
           }
         }
       ]
