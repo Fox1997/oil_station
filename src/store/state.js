@@ -13,7 +13,7 @@ export default {
   },
   // 智能监控数据
   monitor: {
-    isLoadDetail: false, // 是否加载详情页
+    isLoadDetail: false, // 是否加载详情视频
 
     // 所有的视频流
     videoStreamArr: [],

@@ -68,7 +68,7 @@ export default {
             lineStyle: { color: '#57617B' }
           },
           axisLabel: {
-            interval: 0,
+            // interval: 0,
             textStyle: {
               color: '#fff'
             }

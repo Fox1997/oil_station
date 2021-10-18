@@ -23,7 +23,10 @@
     </el-col>
     <el-col :span="12">
       <!-- 分数 -->
-    <Score :score = "score"/>
+    <Score :score = "score"
+    :scoreWeek = "scoreWeek"
+    :scoreMonth = "scoreMonth"
+    />
     <!-- 服务人次，服务车辆数，平均服务事件，平均加油时间 -->
     <four-charts
       class="marginDis"
@@ -74,7 +77,7 @@ import radarChart from '@/components/context/radarChart'
 import personChart from '@/components/context/personChart'
 import Score from './Score.vue'
 import centerPart from './centerPart.vue'
-import { getxAxisArr, getyAxisArr, formatCongestion } from '@/utils/constData'
+import { getxAxisArr, getyAxisArr, formatCongestion, compareScore } from '@/utils/constData'
 import
 {
   reqServerScore,
@@ -129,6 +132,9 @@ export default {
       isGetData: false,
       // 中间分数
       score: [],
+      scoreWeek: [],
+      scoreMonth: [
+      ],
       // 左上角便利店数据
       checkoutTitle: '便利店事件数据',
       // 左上角便利店事件名称
@@ -178,7 +184,7 @@ export default {
       chartTypes: ['line', 'line', 'line', 'line'],
       // 违规率，服务率和拥挤指数
       illRatio: 0,
-      conIndex: '',
+      conIndex: {},
       serviceRatio: 0,
       manageRatio: 0,
       refuelInspect: 0,
@@ -194,21 +200,9 @@ export default {
     }
   },
   watch: {
-    // isGetData: {
-    //   hander (val) {
-    //     if (val) {
-    //       window.clearInterval(this.timer)
-    //     }
-    //   }
-    // }
   },
   mounted () {
-    // window.setInterval(() => {
-    // if (sessionStorage.getItem('token')) {
     this.initData()
-    // this.isGetData = true
-    // }
-    // }, 10)
   },
   methods: {
     async initData () {
@@ -260,7 +254,26 @@ export default {
       const s3 = parseFloat((securityScore * 100).toFixed(1))
       const s4 = parseFloat((manageScore * 100).toFixed(1))
       this.score = [s1, s2, s3, s4]
-
+      // 获取本月和本周分数
+      const { val: serverScoreWeek } = await reqServerScore({ val: 1, span: 7 })
+      const { val: efficientScoreWeek } = await reqEfficientScore({ val: 1, span: 7 })
+      const { val: securityScoreWeek } = await reqSecurityScore({ val: 1, span: 7 })
+      const { val: manageScoreWeek } = await reqManageScore({ val: 1, span: 7 })
+      const { val: serverScoreMonth } = await reqServerScore({ val: 1, span: 30 })
+      const { val: efficientScoreMonth } = await reqEfficientScore({ val: 1, span: 30 })
+      const { val: securityScoreMonth } = await reqSecurityScore({ val: 1, span: 30 })
+      const { val: manageScoreMonth } = await reqManageScore({ val: 1, span: 30 })
+      const week1 = compareScore((serverScore - serverScoreWeek) / serverScore)
+      const week2 = compareScore((efficientScore - efficientScoreWeek) / efficientScore)
+      const week3 = compareScore((securityScore - securityScoreWeek) / securityScore)
+      const week4 = compareScore((manageScore - manageScoreWeek) / manageScore)
+      const month1 = compareScore((serverScore - serverScoreMonth) / serverScore)
+      const month2 = compareScore((efficientScore - efficientScoreMonth) / efficientScore)
+      const month3 = compareScore((securityScore - securityScoreMonth) / securityScore)
+      const month4 = compareScore((manageScore - manageScoreMonth) / manageScore)
+      this.scoreWeek = [week1, week2, week3, week4]
+      this.scoreMonth = [month1, month2, month3, month4]
+      // console.log(this.scoreWeek, this.scoreMonth)
       // 服务人数，服务车辆数，平均服务时间，平均加油时间
       const serviceCount = await reqServiceCount()
       const avaServiceTime = await reqServiceTime()
@@ -280,7 +293,8 @@ export default {
       const { val: reInspect } = await reqRefuelInspect({ val: 1 })
       this.illRatio = parseFloat((iRatio * 100).toFixed(1))
       this.serviceRatio = parseFloat((seRatio * 100).toFixed(1))
-      this.conIndex = formatCongestion(index).text
+      this.conIndex = formatCongestion(index)
+      // this.conIndex.color = formatCongestion(index).color
       this.manageRatio = parseFloat((mRatio * 100).toFixed(1))
       this.refuelInspect = reInspect
 

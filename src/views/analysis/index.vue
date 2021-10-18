@@ -7,11 +7,11 @@
         </div>
     </el-col>
     <el-col :span="3" class="right select_time">
-    <el-radio-group  size="small"  >
-      <el-radio-button label="当日"></el-radio-button>
-      <el-radio-button label="本周" disabled ></el-radio-button>
-      <el-radio-button label="本月" disabled></el-radio-button>
-    </el-radio-group>
+    <!-- <el-radio-group class="right" >
+      <el-radio-button label="当日" ></el-radio-button>
+      <el-radio-button label="本周"  ></el-radio-button>
+      <el-radio-button label="本月" ></el-radio-button>
+    </el-radio-group> -->
   </el-col>
   </el-row>
   <!-- <category-page/> -->
@@ -39,7 +39,7 @@ export default {
   watch: {
     $route: {
       handler (val, oldval) {
-        console.log(val)// 新路由信息
+        // console.log(val)// 新路由信息
         const cate = JSON.stringify(val.meta.name)
         this.title = (cate.substring(1, cate.length - 1))
       },

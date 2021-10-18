@@ -10,6 +10,9 @@ module.exports = {
       .loader('px2rem-loader')
       .options({ remUnit: 100 })
       .end()
+  },
+  devServer: {
+    port: 8888
   }
   // css: {
   //   loaderOptions: {

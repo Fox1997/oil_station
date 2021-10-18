@@ -89,10 +89,7 @@ export default {
       }
       const Cate = JSON.parse(sessionStorage.getItem('categoryData'))
       const categoriesArr = Object.keys(Cate).filter(key => key.length === 1).map(key => Cate[key])
-      // console.log(categoriesArr)
-      for (let i = 0; i < categoriesArr.length; i++) {
-        this.categories[i] = categoriesArr[i]
-      }
+      this.categories = categoriesArr
       // console.log(this.categories)
     },
     // header配色和内容
@@ -164,6 +161,9 @@ font-weight: bolder; cursor: text;
 }
 .el-dropdown-menu__item:not(.is-disabled):hover {
      background-color: transparent;
+}
+.el-dropdown-menu__item:focus, .el-dropdown-menu__item:not(.is-disabled):hover {
+  // color:#fff;
 }
 .title_button .el-link  {
   font-size:1.2rem ;

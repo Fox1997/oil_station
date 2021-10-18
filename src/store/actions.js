@@ -4,9 +4,9 @@ import {
   reqEventsDefine,
   reqLevelsDefine,
   reqAllEvents,
-  reqStreamQuery
-  // reqStreamPull
-  // reqIllegalEvents
+  reqStreamQuery,
+  reqStreamPull,
+  reqIllegalEvents
 } from '@/api'
 export default {
   // 获取 token 并设置授权状态
@@ -78,36 +78,36 @@ export default {
     sessionStorage.setItem('levelData', JSON.stringify(levelData))
   },
 
-  // // 获取智能监控所有报警事件,返回数据：事件名称，时间，等级， 场景，图，视频
-  // async getMonitorAllEvents ({ commit }, params) {
-  //   const resData = await reqAllEvents(params)
-  //   const tableData = resData.items.map((item) => {
-  //     return {
-  //       name: getEventData()[item.event_code],
-  //       datetime: item.timestamp,
-  //       level: getLevelData()[item.level].nameCN,
-  //       category: getCategoryData()[item.category_code].nameCN,
-  //       image_path: item.image_path,
-  //       video_path: item.video_path
-  //     }
-  //   })
-  //   commit('SET_MONITOR_ALARM_EVENTS', { tableData })
-  // },
-  // // 获取智能监控违规事件
-  // async getMonitorIllegalEvents ({ commit }, params) {
-  //   const resData = await reqIllegalEvents(params)
-  //   const tableData = resData.items.map((item) => {
-  //     return {
-  //       name: getEventData()[item.event_code],
-  //       datetime: item.timestamp,
-  //       level: getLevelData()[item.level].nameCN,
-  //       category: getCategoryData()[item.category_code],
-  //       image_path: item.image_path,
-  //       video_path: item.video_path
-  //     }
-  //   })
-  //   commit('SET_MONITOR_ALARM_EVENTS', { tableData })
-  // },
+  // 获取智能监控所有报警事件,返回数据：事件名称，时间，等级， 场景，图，视频
+  async getMonitorAllEvents ({ commit }, params) {
+    const resData = await reqAllEvents(params)
+    const tableData = resData.items.map((item) => {
+      return {
+        name: getEventData()[item.event_code],
+        datetime: item.timestamp,
+        level: getLevelData()[item.level].nameCN,
+        category: getCategoryData()[item.category_code].nameCN,
+        image_path: item.image_path,
+        video_path: item.video_path
+      }
+    })
+    commit('SET_MONITOR_ALARM_EVENTS', { tableData })
+  },
+  // 获取智能监控违规事件
+  async getMonitorIllegalEvents ({ commit }, params) {
+    const resData = await reqIllegalEvents(params)
+    const tableData = resData.items.map((item) => {
+      return {
+        name: getEventData()[item.event_code],
+        datetime: item.timestamp,
+        level: getLevelData()[item.level].nameCN,
+        category: getCategoryData()[item.category_code],
+        image_path: item.image_path,
+        video_path: item.video_path
+      }
+    })
+    commit('SET_MONITOR_ALARM_EVENTS', { tableData })
+  },
   // TODO:智能监控
   // 获取站点视频流列表
   async getVideoStreamArr ({ commit }) {
@@ -117,15 +117,17 @@ export default {
     videoArr.forEach(item => {
       item.title = getCategoryData()[item.category].nameCN + item.channel + '号视频'
     })
+    console.log(videoArr)
     commit('SET_VIDEO_STREAM_ARR', { videoArr })
   },
 
-  // // 加载某一路视频流信息
-  // async getCurVideoStream ({ commit }, { schedulerStr }) {
-  //   const curVideoStream = await reqStreamPull(schedulerStr)
-  //   curVideoStream.title = getCategoryData()[curVideoStream.category].nameCN + curVideoStream.channel + '号视频'
-  //   commit('SET_CUR_VIDEO_STREAM', { curVideoStream })
-  // },
+  // 加载某一路视频流信息
+  async getCurVideoStream ({ commit }, { schedulerStr }) {
+    const curVideoStream = await reqStreamPull(schedulerStr)
+    curVideoStream.title = getCategoryData()[curVideoStream.category].nameCN + curVideoStream.channel + '号视频'
+    commit('SET_CUR_VIDEO_STREAM', { curVideoStream })
+    commit('SET_IS_LOAD_DETAIL', { payload: true })
+  },
   // TODO:历史事件
   // 报警事件页面的接口数据
   async searchAlarmEvents ({ commit }, params) {

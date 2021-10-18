@@ -5,7 +5,7 @@
         <a class="leftTitle">加油区巡检次数：</a>
         <a class="active">{{refuelInspect}}次</a>
         <a class="leftTitle">加油区拥堵情况：</a>
-        <a class="active">{{conIndex}} </a>
+        <a class="active" :style="{color:conIndex.color}">{{conIndex.text}} </a>
     </div>
     <div class="visualSssf_right">
       <v-chart :options = "option1" class="visualSssf_right_box" :autoresize="true" theme="light"></v-chart>
@@ -26,7 +26,7 @@ export default {
       type: Number
     },
     conIndex: {
-      type: String
+      type: Object
     },
     refuelInspect: {
       type: Number

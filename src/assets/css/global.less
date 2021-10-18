@@ -12,7 +12,8 @@ body {
   /* // background-position: center; */
   color: #fff;
   overflow: hidden;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
 }
 @font-face{
 	font-family: yjsz;
@@ -83,8 +84,27 @@ body {
   color:#dcd6d6 ;
   font-size: 1.1rem;
 }
+.el-switch__label {
+  color: #fff ;
+  // height: 2.8rem;
+}
+.el-switch__label * {
+  font-size: .8rem;
+}
+.switch {
+  span {
+    line-height: 1.8rem !important;
+  }
+  .el-switch__core{
+    margin-top: .8rem !important;
+  }
+}
+.el-switch.is-checked .el-switch__core {
+  background-color: #034c6a;
+}
 .boxall{
-  padding:1rem;  background: rgba(16,54,87,0.4);position: relative; z-index: 10;}
+  padding:1rem;
+  background: rgba(27, 156, 173, 0.219);position: relative; z-index: 10;}
 .title{ font-size:1rem; color:#fff; position: relative; padding-left: .8rem;margin-bottom: .8rem;}
 .title:before{ width: .3rem; height: 1.2rem; top:.1rem; position: absolute; content: ""; background: #49bcf7; border-radius:1rem; left: 0; }
 
@@ -97,13 +117,14 @@ body {
 
 .ivu-table
  {
-  height: 38rem !important;
+  // height: 30% !important;
   width:100%;
   font-size: 1rem;
   margin:.8rem .3rem;
   overflow-x: hidden;
   overflow-y: scroll;
   background-color: transparent;
+  
 }
 .ivu-table-header thead tr th{
   background-color: #445061;
@@ -115,6 +136,7 @@ body {
 }
 .ivu-table-tbody  {
   background-color: transparent;
+  
 }
 .el-pagination span.el-pagination__sizes {
   background-color: transparent;
@@ -130,9 +152,12 @@ tr.ivu-table-row {
     /* background-color: yellow; */
     box-shadow: -.5rem 0 .6rem #034c6a inset,
     .5rem 0 .6rem #034c6a inset;
+    height: 2rem !important;
+    
 }
 tr.ivu-table-row-hover td{
   background-color: rgba(75, 141, 248, 0.12);
+
 }
 /* .ivu-table td {
   box-shadow: -.5rem 0 .6rem #034c6a inset,
@@ -143,6 +168,7 @@ tr.ivu-table-row-hover td{
 }
 tr .ivu-table-row {
   background-color: transparent !important;
+  
 }
 
 .home {
@@ -152,6 +178,7 @@ tr .ivu-table-row {
   .table_div {
     .el-pagination__total, .el-pagination__jump{
       color:#e9e9e9;
+      font-size: .8rem;
     }
     input, button, ul > li{
       color:#e9e9e9;
@@ -162,6 +189,9 @@ tr .ivu-table-row {
       color:#409EFF;
     }
   }
+}
+.el-card__body {
+  height:100%;
 }
 .other-cols {
   color: #bdc0c5;

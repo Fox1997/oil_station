@@ -2,27 +2,32 @@
       <div class="div_any">
         <div class="left div_any01">
             <div class="div_any_child">
-                <div class="div_any_title"><img src="img/title_1.png">{{title[0]}} </div>
+                <div class="div_any_title">
+                   <i class="el-icon-s-platform"></i> {{title[0]}} </div>
                 <slot name="checkout"></slot>
             </div>
             <div class="div_any_child">
-                <div class="div_any_title"><img src="img/title_2.png">{{title[1]}} </div>
+                <div class="div_any_title">
+                <i class="el-icon-s-cooperation"></i>{{title[1]}} </div>
                 <slot name="unload"></slot>
             </div>
         </div>
         <div class="div_any02 left ">
             <div class="div_any_child div_height">
-                <div class="div_any_title any_title_width"><img src="img/title_3.png">{{title[2]}} </div>
+                <div class="div_any_title any_title_width">
+                <i class="el-icon-s-data"></i>{{title[2]}} </div>
                 <slot name="ill"></slot>
             </div>
         </div>
         <div class="right div_any01">
             <div class="div_any_child">
-                <div class="div_any_title"><img src="img/title_4.png">{{title[3]}} </div>
+                <div class="div_any_title">
+                <i class="el-icon-s-promotion"></i>{{title[3]}} </div>
                 <slot name="refuel"></slot>
             </div>
             <div class="div_any_child">
-                <div class="div_any_title"><img src="img/title_5.png">{{title[4]}} </div>
+                <div class="div_any_title">
+                <i class="el-icon-menu"></i>{{title[4]}} </div>
                 <slot name="safe"></slot>
             </div>
         </div>

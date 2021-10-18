@@ -38,6 +38,7 @@ export default {
   SET_CUR_ROW_EVENT (state, { index }) {
     state.alarmEvents.curRowIndex = index
   },
+  // TODO:智能分析
   // 设置所有视频流
   SET_VIDEO_STREAM_ARR (state, { videoArr }) {
     state.monitor.videoStreamArr = videoArr
@@ -45,5 +46,13 @@ export default {
   // 设置智能监控报警事件数据
   SET_MONITOR_ALARM_EVENTS (state, { tableData }) {
     state.monitor.tableDataArr = tableData
+  },
+  // 设置当前视频流信息
+  SET_CUR_VIDEO_STREAM (state, { curVideoStream }) {
+    state.monitor.curVideoStream = curVideoStream
+  },
+  // 设置是否查看详情
+  SET_IS_LOAD_DETAIL (state, { payload }) {
+    state.monitor.isLoadDetail = payload
   }
 }

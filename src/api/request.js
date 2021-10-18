@@ -38,8 +38,13 @@ instance.interceptors.request.use(
 // 向除了认证接口（reqAuth）的其他接口的请求头中加入token：
 instance.interceptors.request.use(
   config => {
-    if (sessionStorage.key('token')) {
-      config.headers.Authorization = 'Bearer ' + sessionStorage.getItem('token')
+    const { url } = config
+    if (url === '/api/tokens') {
+      config.headers.Authorization = `Basic ${Base64.encode('admin:admin123')}`
+    } else {
+      if (sessionStorage.key('token')) {
+        config.headers.Authorization = 'Bearer ' + sessionStorage.getItem('token')
+      }
     }
     return config
   },

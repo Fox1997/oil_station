@@ -14,7 +14,8 @@
               <select clearable v-model="queryForm.event_code">
                 <option v-for="item in eventList"
                 :value="item.key"
-                :key="item.key">
+                :key="item.key"
+                class="option-item">
                 {{ item.value }}
                 </option>
               </select>
@@ -49,7 +50,7 @@
             :columns="colData"
             :data="this.tableData"
             ></Table>
-            <el-pagination
+            <el-pagination class="page"
               @current-change="handleCurrentChange"
               :total="this.pageData.itemTotal"
               :current="this.pageData.curPage"
@@ -202,8 +203,8 @@ export default {
               'Button',
               {
                 props: {
-                  type: 'success',
-                  size: 'small'
+                  type: 'success'
+                  // size: 'small'
                 },
                 style: {
                   marginRight: '.05rem'
@@ -228,8 +229,8 @@ export default {
                 'Button',
                 {
                   props: {
-                    type: 'warning',
-                    size: 'small'
+                    type: 'warning'
+                    // size: 'small'
                   },
                   on: {
                     click: () => {
@@ -249,7 +250,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
 .table_find{
     width: 100%;
     // background-color: ;
@@ -262,12 +262,12 @@ export default {
 .more_find{
     cursor: pointer;
     position: relative;
-    top:.3rem;
+    // top:.3rem;
+    color: #fff;
 }
 .table_find .glyphicon{
     margin-right: .2rem;
 }
-
 .table_find p{
     margin: .6rem;
 }
@@ -276,6 +276,13 @@ export default {
     width: 8%;
     display: inline-block;
     text-align: right;
+}
+// 表格高度
+.ivu-table-wrapper{
+  height:38.5rem;
+}
+.page {
+  margin-top:1rem;
 }
 /* .table_find input[type=text],.table_find input[type=date]{
     width: 16%;
@@ -291,8 +298,8 @@ export default {
     border-radius: .15rem;
     text-indent: 1em;
     border:.1rem solid #4b8df8;
-    background-color: #cccccc4f;
-    color: #c0c4cc;
+    background-color: #666;
+    color: #eeeeee;
 }
 .el-range-editor--small.el-input__inner {
      /* width: 23%; */
@@ -301,8 +308,8 @@ export default {
     border-radius: .15rem;
     /* text-indent: 1em; */
     border:.1rem solid #4b8df8;
-    background-color: #cccccc4f;
-    color: #c0c4cc;
+    background-color: #666;
+    color: #eeeeee;
 }
 /* .el-input__inner {
    display: none !important;
@@ -352,6 +359,6 @@ export default {
     color: #FFFFff;
 }
 .table_but a i{
-    margin-right: .5remx;
+    margin-right: .5rem;
 }
 </style>

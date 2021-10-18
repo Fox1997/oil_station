@@ -75,6 +75,19 @@ exports.formatTime = function (time) {
   }
   return res
 }
+// 处理周月分数比较的增长和减少
+exports.compareScore = function (score) {
+  const res = {}
+  if (score >= 0) {
+    // 分数是用小数表示*100，加百分号*100
+    res.value = '+' + (score * 100).toFixed(2) + '%'
+    res.color = '#fe3e12'
+  } else {
+    res.value = '-' + (-score * 100).toFixed(2) + '%'
+    res.color = '#12fe81'
+  }
+  return res
+}
 
 // 格式化违规程度
 exports.formatIllLevel = function (value) {
@@ -83,7 +96,7 @@ exports.formatIllLevel = function (value) {
   //   res.value = '基本合规'
   //   res.color = '#006030'
   // } else if (value < 0.5) {
-  if (value < 0.5) {
+  if (value < 0.5 && value >= 0) {
     res.value = '合规'
     // res.color = '#64A600'
     res.color = '#006030'
